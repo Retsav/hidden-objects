@@ -37,6 +37,7 @@ public class GameStateMachine : MonoBehaviour
         Clock.Instance.SetClockTimer(exploringStateTimer);
         Clock.Instance.ChangeClockState(true);
         Clock.Instance.OnClockFinished += ClockFinished;
+        ReactToPointer.IsReactLocked = true;
     }
 
     private void ClockFinished(object sender, EventArgs e)
@@ -63,6 +64,7 @@ public class GameStateMachine : MonoBehaviour
         DioramaManager.Instance.LoadChangedDiorama();
         FadeManager.Instance.FadeOut(1f);
         _currentState = searchingState;
+        ReactToPointer.IsReactLocked = false;
         yield return null;
     }
 }
